@@ -1,0 +1,183 @@
+\documentclass{gshs_thesis}
+
+\graphicspath{{images/}}
+% 이곳에 필요한 별도의 패키지들을 적어넣으시오.
+%\usepackage{...}
+\usepackage{verbatim} % for commment, verbatim environment
+\usepackage{spverbatim} % automatic linebreak verbatim environment
+\usepackage{listings}
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{filecontents}
+\usepackage{pgfplotstable}
+\pgfplotsset{
+	compat=newest,
+	% label style={font=\scriptsize},
+	% ticklabel style={font=\scriptsize},
+	% legend style={font=\tiny},
+	% major tick length=0.1cm,
+	% minor tick length=0.05cm,
+	% every x tick/.style={black},
+}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.47,0.47,0.33}
+\definecolor{myorange}{rgb}{0.8,0.4,0}
+\definecolor{mywhite}{rgb}{0.98,0.98,0.98}
+\definecolor{myblue}{rgb}{0.01,0.61,0.98}
+
+\newcommand*{\FormatDigit}[1]{\ttfamily\textcolor{mygreen}{#1}}
+%% https://tex.stackexchange.com/questions/32174/listings-package-how-can-i-format-all-numbers
+\lstdefinestyle{FormattedNumber}{%
+    literate=*{0}{{\FormatDigit{0}}}{1}%
+             {1}{{\FormatDigit{1}}}{1}%
+             {2}{{\FormatDigit{2}}}{1}%
+             {3}{{\FormatDigit{3}}}{1}%
+             {4}{{\FormatDigit{4}}}{1}%
+             {5}{{\FormatDigit{5}}}{1}%
+             {6}{{\FormatDigit{6}}}{1}%
+             {7}{{\FormatDigit{7}}}{1}%
+             {8}{{\FormatDigit{8}}}{1}%
+             {9}{{\FormatDigit{9}}}{1}%
+             {.0}{{\FormatDigit{.0}}}{2}% Following is to ensure that only periods
+             {.1}{{\FormatDigit{.1}}}{2}% followed by a digit are changed.
+             {.2}{{\FormatDigit{.2}}}{2}%
+             {.3}{{\FormatDigit{.3}}}{2}%
+             {.4}{{\FormatDigit{.4}}}{2}%
+             {.5}{{\FormatDigit{.5}}}{2}%
+             {.6}{{\FormatDigit{.6}}}{2}%
+             {.7}{{\FormatDigit{.7}}}{2}%
+             {.8}{{\FormatDigit{.8}}}{2}%
+             {.9}{{\FormatDigit{.9}}}{2}%
+             %{,}{{\FormatDigit{,}}{1}% depends if you want the "," in color
+             {\ }{{ }}{1}% handle the space
+             ,%
+}
+
+
+\lstset{%
+  backgroundcolor=\color{mywhite},   
+  basicstyle=\footnotesize,       
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                   
+  commentstyle=\color{red},    
+  deletekeywords={...},           
+  escapeinside={\%*}{*)},          
+  extendedchars=true,              
+  frame=shadowbox,                    
+  keepspaces=true,                 
+  keywordstyle=\color{myorange},       
+  language=Octave,                
+  morekeywords={*,...},            
+  numbers=left,                    
+  numbersep=5pt,                   
+  numberstyle=\tiny\color{mygray}, 
+  rulecolor=\color{black},         
+  rulesepcolor=\color{myblue},
+  showspaces=false,                
+  showstringspaces=false,          
+  showtabs=false,                  
+  stepnumber=2,                    
+  stringstyle=\color{myorange},    
+  tabsize=2,                       
+  title=\lstname,
+  emphstyle=\bfseries\color{blue},%  style for emph={} 
+}    
+
+%% language specific settings:
+\lstdefinestyle{Arduino}{%
+    style=FormattedNumber,
+    keywords={void},%                 define keywords
+    morecomment=[l]{//},%             treat // as comments
+    morecomment=[s]{/*}{*/},%         define /* ... */ comments
+    emph={HIGH, OUTPUT, LOW},%        keywords to emphasize
+}
+%% language specific settings:
+\lstdefinestyle{Arduino}{%
+    style=FormattedNumber,
+    keywords={void},%                 define keywords
+    morecomment=[l]{//},%             treat // as comments
+    morecomment=[s]{/*}{*/},%         define /* ... */ comments
+    emph={HIGH, OUTPUT, LOW},%        keywords to emphasize
+}
+\usepackage{hologo}
+
+% -----------------------------------------------------------------------
+%                   이 부분은 수정하지 마시오.
+% -----------------------------------------------------------------------
+\titleheader{졸업논문청구논문}
+\school{과학영재학교 경기과학고등학교}
+\approval{위 논문은 과학영재학교 경기과학고등학교 졸업논문으로\\
+졸업논문심사위원회에서 심사 통과하였음.}
+\chairperson{심사위원장}
+\examiner{심사위원}
+\apprvsign{(인)}
+\korabstract{초 록}
+\koracknowledgement{감사의 글}
+\korresearches{연 구 활 동}
+
+%: ----------------------------------------------------------------------
+%:                  논문 제목과 저자 이름을 입력하시오
+% ----------------------------------------------------------------------
+% \title{2차원 조파수조의 규칙파 발생 조파기 제작 및 검증} %한글 제목
+
+% \title{Arduino를 이용한 2차원 조파 수조에서의 균형파 발생}
+% \title{Teensy 기반 조파기를 이용한 2차원 조파 수조에서의 균형파 발생 및 검증}
+%Arduino인가?
+\title{모형 실험을 위한 연안 환경 조성 및 규칙파 생성 검증}
+
+% \engtitle{Developing coastal environments for model experiments and verifying balanced wave generation}
+\engtitle{Installation of coastal beach slope and verification of regular wave generation in the mini wave flume}
+
+% \engtitle{Generating and Verifying Sinusoidal Wave using Teensy-based Wavemaker in 2-Dimensional Wave Channel}
+% \engtitle{Generating Sinusoidal Wave using Arduino in 2-Dimensional Wave Channel}
+\korname{남 도 현} %저자 이름을 한글로 입력하시오 (글자 사이 띄어쓰기)
+\engname{Nam, Do-Hyun} %저자 이름을 영어로 입력하시오 (family name, personal name)
+\chnname{南 都 鉉} %저자 이름을 한자로 입력하시오 (글자 사이 띄어쓰기)
+\studid{21033} %학번을 입력하시오
+
+%------------------------------------------------------------------------
+%                  심사위원과 논문 승인 날짜를 입력하시오
+%------------------------------------------------------------------------
+\advisor{Park, Kiehyun}  %지도교사 영문 이름 (family name, personal name)
+\judgeone{신 성 원} %심사위원장
+\judgetwo{전 영 준}   %심사위원1
+\judgethree{박 기 현} %심사위원2(지도교사)
+\degreeyear{2024}   %졸업 년도
+\degreedate{2023}{6}{30} %논문 승인 날짜 양식
+
+%------------------------------------------------------------------------
+%                  논문제출 전 체크리스트를 확인하시오
+%------------------------------------------------------------------------
+\checklisttitle{[논문제출 전 체크리스트]} %수정하지 마시오
+\checklistI{1. 이 논문은 내가 직접 연구하고 작성한 것이다.} %수정하지 마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkI{$\square$}
+\checklistmarkI{$\text{\rlap{$\checkmark$}}\square$}
+\checklistII{2. 인용한 모든 자료(책, 논문, 인터넷자료 등)의 인용표시를 바르게 하였다.} %수정하지 마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkII{$\square$}
+\checklistmarkII{$\text{\rlap{$\checkmark$}}\square$}
+\checklistIII{3. 인용한 자료의 표현이나 내용을 왜곡하지 않았다.} %수정하지마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkIII{$\square$}
+\checklistmarkIII{$\text{\rlap{$\checkmark$}}\square$}
+\checklistIV{4. 정확한 출처제시 없이 다른 사람의 글이나 아이디어를 가져오지 않았다.} %수정하지 마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkIV{$\square$}
+\checklistmarkIV{$\text{\rlap{$\checkmark$}}\square$}
+\checklistV{5. 논문 작성 중 도표나 데이터를 조작(위조 혹은 변조)하지 않았다.} %수정하지 마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkV{$\square$}
+\checklistmarkV{$\text{\rlap{$\checkmark$}}\square$}
+\checklistVI{6. 다른 친구와 같은 내용의 논문을 제출하지 않았다.} %수정하지 마시오
+% 이 항목이 사실이라면 다음 줄 앞에 "%"기호 삽입, 다다음 줄 앞의 "%"기호 제거하시오
+%\checklistmarkVI{$\square$}
+\checklistmarkVI{$\text{\rlap{$\checkmark$}}\square$}
