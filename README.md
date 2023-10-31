@@ -1,21 +1,21 @@
-﻿# 경기과학고 졸업논문 양식 - advanced ver.
+﻿# GSHS Thesis form - advanced ver.
 
-## 글꼴 : 바탕(한글), Times New Roman(영문)
-xelatex을 사용하여 글꼴을 바꾸었습니다. 
+## Fonts : 바탕(한글), Times New Roman(영문)
+xelatex was used to change fonts.
 `% !TeX program = xelatex`
 
-## sub files 이용
-고쳐진 부분만 컴파일되기 때문에 조판 속도가 빨라집니다.
+## Use sub files
+Speeds up typesetting as only the modified parts are compiled.
 
-## images 폴더 사용
-편리해진 이미지 관리
+## Use images folder
+Convenient image managery
 `\graphicspath{{images/}}`
 
-## bibtex 이용
-bibtex을 사용하면 정렬, 스타일링 등이 자동으로 됩니다.
+## Use bibtex
+Automatic sorting and styling.
 `\bibliographystyle{gshs_thesis}`
-APA style에 최대한 가깝게 구현하였습니다. (gshs_thesis.bst)
+Implemented to APA style. (gshs_thesis.bst)
 
-## Overleaf를 사용할 경우 (Texstudio도 동일)
-설정(menu)에서 main document를 gs19XXX_main.tex으로 설정해야 합니다.
+## When using Overleaf or Texstudio
+Set gs19XXX_main.tex as main document from the menu.
 
